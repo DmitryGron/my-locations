@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as categoriesActions from '../../store/actions/categories.actions';
-import CustomTable from '../../components/Table.component';
+import CustomTable from '../../components/custom/Table.component';
 
 const Categories = props => {
 	return (
@@ -17,13 +16,4 @@ const mapStateToProps = state => {
 	};
 };
 
-const mapDispatchToProps = dispatch => {
-	return {
-		getCategories: () => dispatch(categoriesActions.getCategories())
-	};
-};
-
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Categories);
+export default connect(mapStateToProps)(Categories);

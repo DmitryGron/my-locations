@@ -7,11 +7,11 @@ export const addCategory = categoryName => {
 	};
 };
 
-export const getCategories = () => {
-	return {
-		type: actionTypes.GET_CATEGORIES
-	};
-};
+// export const getCategories = () => {
+// 	return {
+// 		type: actionTypes.GET_CATEGORIES
+// 	};
+// };
 
 export const updateCategory = (categoryName, newCategoryName) => {
 	return {

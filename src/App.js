@@ -3,6 +3,7 @@ import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import Categories from './containers/Categories/Categories.contianer';
 import Layout from './HigherOrderComponent/Layout';
+import * as routePaths from './static/routes';
 
 const Button = styled.button`
 	background: transparent;
@@ -36,10 +37,10 @@ const Temp = () => {
 const App = () => {
 	const routes = (
 		<Switch>
-			<Route path="/locations" exact component={Categories} />
-			<Route path="/categories" exact component={Categories} />
-			<Route path="/" exact component={Temp} />
-			<Redirect to="/" />
+			<Route path={routePaths.locations} exact component={Categories} />
+			<Route path={routePaths.categories} exact component={Categories} />
+			<Route path={routePaths.home} exact component={Temp} />
+			<Redirect to={routePaths.home} />
 		</Switch>
 	);
 

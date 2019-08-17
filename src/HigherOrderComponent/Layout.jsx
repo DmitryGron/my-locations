@@ -1,15 +1,13 @@
 import React from 'react';
-// import Toolbar from '../../../components/Navigation/Toolbar/Toolbar';
+import Navbar from '../components/Navbar/Navbar.container';
 
 const Layout = props => {
 	console.log(props);
 	return (
 		<>
-			{/* <Toolbar
-					opened={this.sideDrawerOpenedHandler}
-					isAuthenticated={this.props.isAuthenticated}
-				/> */}
+			{/* TODO: toolbar */}
 			<main>{props.children}</main>
+			<Navbar />
 		</>
 	);
 };
