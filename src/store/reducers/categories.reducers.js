@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
-import { updateObject } from '../../shared/utility';
+// import { updateObject } from '../../shared/utility';
 
 // TODO: check if need more state(loading,etc...)
 const initialState = {
