@@ -1,5 +1,5 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
+import React from 'react'
+import styled, { css } from 'styled-components'
 
 const Button = styled.button`
 	background: transparent;
@@ -15,11 +15,11 @@ const Button = styled.button`
 			background: palevioletred;
 			color: white;
 		`}
-`;
+`
 
 const Container = styled.div`
 	text-align: center;
-`;
+`
 
 function App() {
 	return (
@@ -27,7 +27,7 @@ function App() {
 			<Button>Normal Button</Button>
 			<Button primary>Primary Button</Button>
 		</Container>
-	);
+	)
 }
 
-export default App;
+export default App
