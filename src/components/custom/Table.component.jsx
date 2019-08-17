@@ -26,6 +26,7 @@ vertical-align: middle;
 
 `;
 
+// TODO: map headers from props
 const CustomTable = props => {
 	console.log(props);
 	return (
@@ -37,7 +38,7 @@ const CustomTable = props => {
 				</tr>
 				{props.categories.map(category => (
 					<tr>
-						<TableData>{category.categoryName}</TableData>
+						<TableData>{category}</TableData>
 					</tr>
 				))}
 			</tbody>
