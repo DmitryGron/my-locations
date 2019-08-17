@@ -8,14 +8,14 @@ const Toolbar = props => {
 			<header>TEST</header>
 			<button
 				onClick={() => {
-					props.addCategory('props.categoryName');
+					props.addCategory(props.categoryName);
 				}}
 			>
 				Add
 			</button>
 			<button
 				onClick={() => {
-					props.updateCategory(props.categoryName);
+					props.updateCategory(props.categoryName, 'UPDATEDTEST');
 				}}
 			>
 				Update
@@ -31,18 +31,26 @@ const Toolbar = props => {
 	);
 };
 
+const mapStateToProps = state => {
+	return {
+		categoryName: state.categories.categoryName
+	};
+};
+
 const mapDispatchToProps = dispatch => {
 	return {
 		addCategory: categoryName =>
 			dispatch(categoriesActions.addCategory(categoryName)),
-		updateCategory: categoryName =>
-			dispatch(categoriesActions.addCategory(categoryName)),
+		updateCategory: (categoryName, newCategoryName) =>
+			dispatch(
+				categoriesActions.updateCategory(categoryName, newCategoryName)
+			),
 		removeCategory: categoryName =>
-			dispatch(categoriesActions.addCategory(categoryName))
+			dispatch(categoriesActions.removeCategory(categoryName))
 	};
 };
 
 export default connect(
-	null,
+	mapStateToProps,
 	mapDispatchToProps
 )(Toolbar);

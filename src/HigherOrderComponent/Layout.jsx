@@ -3,7 +3,6 @@ import Navbar from '../components/Navbar/Navbar.container';
 import Toolbar from '../containers/Toolbar/Toolbar.container';
 
 const Layout = props => {
-	console.log(props);
 	return (
 		<>
 			<Toolbar />
