@@ -1,12 +1,19 @@
 import React from 'react';
-import NavigationItem from './NavigationItem/NavigationItem';
+import styled from 'styled-components';
 import * as routes from '../../../static/routes';
+import NavigationItem from './NavigationItem/NavigationItem';
+
+const NavContainer = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+`;
 
 const NavigationItems = props => (
-	<ul>
+	<NavContainer>
 		<NavigationItem link={routes.categories}>Categories</NavigationItem>
 		<NavigationItem link={routes.locations}>Locations</NavigationItem>
-	</ul>
+	</NavContainer>
 );
 
 export default NavigationItems;
