@@ -22,7 +22,7 @@ const StyledModalBody = styled.div`
 	transform: translate(-50%, -50%);
 `;
 
-const NavbarFotterBlocker = styled.div`
+const NavbarFotterPhantomBlocker = styled.div`
 	display: block;
 	height: 100px;
 	width: 100%;
@@ -72,7 +72,7 @@ const Layout = props => {
 				<StyledModalBody>{modalFormContent}</StyledModalBody>
 			</Modal>
 			<main>{props.children}</main>
-			<NavbarFotterBlocker />
+			<NavbarFotterPhantomBlocker />
 			<Navbar pathname={props.location.pathname} />
 		</>
 	);
