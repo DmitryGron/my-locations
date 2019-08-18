@@ -3,7 +3,7 @@ import NavigationItems from './NavigationItems/NavigationItems';
 
 const Navbar = props => (
 	<nav>
-		<NavigationItems />
+		<NavigationItems {...props} />
 	</nav>
 );
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import * as categoriesActions from '../store/actions/categories.actions';
-import Navbar from '../components/Navbar/Navbar.container';
+import Navbar from '../components/Navbar/Navbar.component';
 import Toolbar from '../containers/Toolbar/Toolbar.container';
 import * as routes from '../static/routes';
 import Modal from '@material-ui/core/Modal';
@@ -20,6 +20,12 @@ const StyledModalBody = styled.div`
 	border: 2px solid #000;
 	padding: 10px;
 	transform: translate(-50%, -50%);
+`;
+
+const NavbarFotterBlocker = styled.div`
+	display: block;
+	height: 100px;
+	width: 100%;
 `;
 
 const Layout = props => {
@@ -66,7 +72,8 @@ const Layout = props => {
 				<StyledModalBody>{modalFormContent}</StyledModalBody>
 			</Modal>
 			<main>{props.children}</main>
-			<Navbar />
+			<NavbarFotterBlocker />
+			<Navbar pathname={props.location.pathname} />
 		</>
 	);
 };

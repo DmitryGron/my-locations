@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import iconTypes from '../../static/iconTypes';
-import CustomIcon from './Icon.component';
+import ActionIcon from './ActionIcon.component';
 
 const Table = styled.table`
 	width: 100%;
@@ -49,12 +49,12 @@ const CustomTable = ({ title, itemsToShow, onRemove, onUpdate }) => {
 								<TableData>{item.name}</TableData>
 								<InnerDiv>
 									<div onClick={() => onRemove(item.id)}>
-										<CustomIcon
+										<ActionIcon
 											iconName={iconTypes.delete}
 										/>
 									</div>
 									<div onClick={() => onUpdate(item.id)}>
-										<CustomIcon iconName={iconTypes.edit} />
+										<ActionIcon iconName={iconTypes.edit} />
 									</div>
 								</InnerDiv>
 							</RowDiv>

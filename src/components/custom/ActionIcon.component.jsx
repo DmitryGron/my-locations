@@ -15,7 +15,7 @@ const EditIconStyle = styled(EditSharpIcon)`
 	margin: 0px 20px !important;
 `;
 
-const CustomIcon = iconName => {
+const ActionIcon = iconName => {
 	return iconName.iconName === iconTypes.delete ? (
 		<DeleteIconStyle />
 	) : (
@@ -23,4 +23,4 @@ const CustomIcon = iconName => {
 	);
 };
 
-export default CustomIcon;
+export default ActionIcon;
