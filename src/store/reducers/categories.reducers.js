@@ -4,15 +4,17 @@ import { updateObject } from '../../shared/utility';
 // TODO: check if need more state(loading,etc...)
 const initialState = {
 	categories: [],
-	categoryInputValue: 'TEST'
+	categoryInputValue: ''
 };
 
 const addCategory = (state, action) => {
 	const updatedCategoriesArray = [...state.categories];
-	updatedCategoriesArray.push({
-		id: updatedCategoriesArray.length,
-		name: action.categoryName
-	});
+	if (state.categoryInputValue) {
+		updatedCategoriesArray.push({
+			id: updatedCategoriesArray.length,
+			name: state.categoryInputValue
+		});
+	}
 	const updatedState = { categories: updatedCategoriesArray };
 	return updateObject(state, updatedState);
 };
@@ -36,6 +38,13 @@ const removeCategory = (state, action) => {
 	return updateObject(state, updatedState);
 };
 
+const changeCategoryNameInput = (state, action) => {
+	return updateObject(state, {
+		...state,
+		categoryInputValue: action.categoryInputValue
+	});
+};
+
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case actionTypes.ADD_CATEGORY:
@@ -44,6 +53,8 @@ const reducer = (state = initialState, action) => {
 			return updateCategory(state, action);
 		case actionTypes.REMOVE_CATEGORY:
 			return removeCategory(state, action);
+		case actionTypes.CHANGE_INPUT:
+			return changeCategoryNameInput(state, action);
 		default:
 			return state;
 	}

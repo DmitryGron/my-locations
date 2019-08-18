@@ -22,12 +22,6 @@ const StyledModalBody = styled.div`
 	transform: translate(-50%, -50%);
 `;
 
-const onCategoriesModalClick = data => {
-	console.log(data);
-};
-
-const onCategoriesModalChange = () => {};
-
 const Layout = props => {
 	const [open, setOpen] = useState(false);
 
@@ -55,8 +49,13 @@ const Layout = props => {
 	const modalFormContent =
 		props.location.pathname === routes.categories ? (
 			<CategoriesModalForm
-				onClick={onCategoriesModalClick}
-				onChange={onCategoriesModalChange}
+				onClick={(e, data) => {
+					props.addCategory();
+				}}
+				onChange={e => {
+					props.changeCategoryInput(e.target.value);
+					handleClose();
+				}}
 			/>
 		) : (
 			<LocationsModalForm />
@@ -76,8 +75,9 @@ const Layout = props => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		addCategory: categoryName =>
-			dispatch(categoriesActions.addCategory(categoryName))
+		addCategory: () => dispatch(categoriesActions.addCategory()),
+		changeCategoryInput: categoryName =>
+			dispatch(categoriesActions.changeCategoryInput(categoryName))
 	};
 };
 

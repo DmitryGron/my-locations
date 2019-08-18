@@ -1,9 +1,8 @@
 import * as actionTypes from './actionTypes';
 
-export const addCategory = categoryName => {
+export const addCategory = () => {
 	return {
-		type: actionTypes.ADD_CATEGORY,
-		categoryName: categoryName
+		type: actionTypes.ADD_CATEGORY
 	};
 };
 
@@ -19,5 +18,12 @@ export const removeCategory = categoryName => {
 	return {
 		type: actionTypes.REMOVE_CATEGORY,
 		categoryName: categoryName
+	};
+};
+
+export const changeCategoryInput = categoryName => {
+	return {
+		type: actionTypes.REMOVE_CATEGORY,
+		categoryInputValue: categoryName
 	};
 };
