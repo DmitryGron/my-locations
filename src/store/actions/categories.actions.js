@@ -15,9 +15,9 @@ export const updateCategory = (categoryName, newCategoryName) => {
 	};
 };
 
-export const removeCategory = categoryName => {
+export const removeCategory = categoryId => {
 	return {
 		type: actionTypes.REMOVE_CATEGORY,
-		categoryName: categoryName
+		categoryId: categoryId
 	};
 };

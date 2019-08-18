@@ -15,6 +15,7 @@ const ToolbarDiv = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	background-color: #41b3a3;
+	margin-bottom: 20px;
 `;
 
 const StyledHeader = styled.header`

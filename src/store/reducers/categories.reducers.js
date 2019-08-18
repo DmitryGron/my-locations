@@ -3,18 +3,22 @@ import * as actionTypes from '../actions/actionTypes';
 
 // TODO: check if need more state(loading,etc...)
 const initialState = {
-	categories: []
+	categories: [],
+	counter: 0
 };
 
 const addCategory = (state, action) => {
 	const updatedCategoriesArray = [...state.categories];
 	if (action.categoryName) {
 		updatedCategoriesArray.push({
-			id: updatedCategoriesArray.length,
+			id: state.counter,
 			name: action.categoryName
 		});
 	}
-	const updatedState = { categories: updatedCategoriesArray };
+	const updatedState = {
+		categories: updatedCategoriesArray,
+		counter: state.counter + 1
+	};
 	return updateObject(state, updatedState);
 };
 
@@ -29,9 +33,9 @@ const updateCategory = (state, action) => {
 };
 
 const removeCategory = (state, action) => {
-	const updatedCategoriesArray = [...state.categories];
-	updatedCategoriesArray.filter(categoryName => {
-		return categoryName !== action.categoryName;
+	const oldCategoriesArray = [...state.categories];
+	const updatedCategoriesArray = oldCategoriesArray.filter(category => {
+		return category.id !== action.categoryId;
 	});
 	const updatedState = { categories: updatedCategoriesArray };
 	return updateObject(state, updatedState);
