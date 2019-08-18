@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import styled, { createGlobalStyle, css } from 'styled-components';
 import Categories from './containers/Categories/Categories.contianer';
 import Layout from './HigherOrderComponent/Layout';
 import * as routePaths from './static/routes';
@@ -43,9 +43,15 @@ const App = () => {
 			<Redirect to={routePaths.home} />
 		</Switch>
 	);
-
+	const GlobalStyle = createGlobalStyle`
+	body {
+		margin: 0;
+		font-family: sans-serif;
+	}
+  `;
 	return (
 		<div>
+			<GlobalStyle />
 			<Layout>{routes}</Layout>
 		</div>
 	);

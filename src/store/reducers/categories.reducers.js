@@ -4,12 +4,15 @@ import { updateObject } from '../../shared/utility';
 // TODO: check if need more state(loading,etc...)
 const initialState = {
 	categories: [],
-	categoryName: 'TEST'
+	categoryInputValue: 'TEST'
 };
 
 const addCategory = (state, action) => {
 	const updatedCategoriesArray = [...state.categories];
-	updatedCategoriesArray.push(action.categoryName);
+	updatedCategoriesArray.push({
+		id: updatedCategoriesArray.length,
+		name: action.categoryName
+	});
 	const updatedState = { categories: updatedCategoriesArray };
 	return updateObject(state, updatedState);
 };

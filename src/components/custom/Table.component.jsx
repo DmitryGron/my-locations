@@ -9,37 +9,35 @@ const Table = styled.table`
 `;
 
 const TableHead = styled.thead`
-font-size: 4vh;
-font-weight: bold;
-text-align: left;
-padding 2;
-}
+	font-size: 4vh;
+	font-weight: bold;
+	text-align: left;
+	padding: 2;
 `;
 
 const TableData = styled.td`
-font-size: 3vh;
-border: 1px solid LightGrey;
-height: 100%;
-text-align: center;
-vertical-align: middle;
-}
-
+	font-size: 3vh;
+	border: 1px solid LightGrey;
+	height: 100%;
+	text-align: center;
+	vertical-align: middle;
 `;
 
 // TODO: map headers from props
-const CustomTable = props => {
+const CustomTable = ({ title, itemsToShow, onRemove, onUpdate }) => {
+	console.log(itemsToShow);
 	return (
 		<Table>
-			<TableHead>All Categories</TableHead>
+			<TableHead>{title}</TableHead>
 			<tbody>
-				<tr>
-					<TableData>Ctaegory</TableData>
-				</tr>
-				{props.categories.map(category => (
-					<tr key={category}>
-						<TableData>{category}</TableData>
-					</tr>
-				))}
+				{itemsToShow.map(item => {
+					console.log(item);
+					return (
+						<tr key={item.id}>
+							<TableData>{item.name}</TableData>
+						</tr>
+					);
+				})}
 			</tbody>
 		</Table>
 	);
