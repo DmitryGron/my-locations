@@ -25,13 +25,11 @@ const TableData = styled.td`
 
 // TODO: map headers from props
 const CustomTable = ({ title, itemsToShow, onRemove, onUpdate }) => {
-	console.log(itemsToShow);
 	return (
 		<Table>
 			<TableHead>{title}</TableHead>
 			<tbody>
 				{itemsToShow.map(item => {
-					console.log(item);
 					return (
 						<tr key={item.id}>
 							<TableData>{item.name}</TableData>

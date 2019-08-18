@@ -4,6 +4,7 @@ import CustomTable from '../../components/custom/Table.component';
 import * as categoriesActions from '../../store/actions/categories.actions';
 
 const Categories = props => {
+	console.log(props);
 	return (
 		<div>
 			<CustomTable

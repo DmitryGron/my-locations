@@ -49,11 +49,8 @@ const Layout = props => {
 	const modalFormContent =
 		props.location.pathname === routes.categories ? (
 			<CategoriesModalForm
-				onClick={(e, data) => {
-					props.addCategory();
-				}}
-				onChange={e => {
-					props.changeCategoryInput(e.target.value);
+				onClick={inputValue => {
+					props.addCategory(inputValue);
 					handleClose();
 				}}
 			/>
@@ -75,9 +72,8 @@ const Layout = props => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		addCategory: () => dispatch(categoriesActions.addCategory()),
-		changeCategoryInput: categoryName =>
-			dispatch(categoriesActions.changeCategoryInput(categoryName))
+		addCategory: categoryName =>
+			dispatch(categoriesActions.addCategory(categoryName))
 	};
 };
 
