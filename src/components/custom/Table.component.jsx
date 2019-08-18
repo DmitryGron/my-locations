@@ -4,26 +4,26 @@ import React from 'react';
 const Table = styled.table`
 	width: 100%;
 	margin: 0;
-	border-spacing: 0;
+	border-spacing: 2;
 	border-collapse: collapse;
 `;
 
 const TableHead = styled.thead`
-	font-size: 4vh;
+	font-size: 1.7rem;
 	font-weight: bold;
-	text-align: left;
-	padding: 2;
+	text-align: center;
+	color: #41b3a3;
 `;
 
 const TableData = styled.td`
-	font-size: 3vh;
-	border: 1px solid LightGrey;
-	height: 100%;
-	text-align: center;
+	font-size: 1.5rem;
+	color: #60544e;
+	text-align: left;
 	vertical-align: middle;
+	padding: 30px 35px 3px;
+	border-bottom: 1px solid #b5a29b;
 `;
 
-// TODO: map headers from props
 const CustomTable = ({ title, itemsToShow, onRemove, onUpdate }) => {
 	return (
 		<Table>
