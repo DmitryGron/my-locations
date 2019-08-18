@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
+import CustomInput from '../custom/Input.component';
+import CustomButton from '../custom/Button.component';
+import CustomHeader from '../custom/Header.component';
 
 const CategoriesModalForm = props => {
 	const [inputValue, setInputValue] = useState('');
 
 	return (
 		<div>
-			<header>{props.header}</header>
-			<input
+			<CustomHeader>{props.header}</CustomHeader>
+			<CustomInput
 				onChange={e => setInputValue(e.target.value)}
 				placeholder='category name'
 			/>
-			<button onClick={() => props.onClick(inputValue)}>ADD</button>
+			<CustomButton onClick={() => props.onClick(inputValue)}>
+				ADD
+			</CustomButton>
 		</div>
 	);
 };
