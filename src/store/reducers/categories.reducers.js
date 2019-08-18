@@ -7,7 +7,6 @@ const initialState = {
 };
 
 const addCategory = (state, action) => {
-	console.log(action);
 	const updatedCategoriesArray = [...state.categories];
 	if (action.categoryName) {
 		updatedCategoriesArray.push({
