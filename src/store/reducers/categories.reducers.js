@@ -3,7 +3,7 @@ import * as actionTypes from '../actions/actionTypes';
 
 // TODO: check if need more state(loading,etc...)
 const initialState = {
-	categories: [],
+	categories: [], // [{name,id}]
 	counter: 0
 };
 
@@ -19,17 +19,30 @@ const addCategory = (state, action) => {
 		categories: updatedCategoriesArray,
 		counter: state.counter + 1
 	};
+	localStorage.setItem('categories', JSON.stringify(updatedState));
 	return updateObject(state, updatedState);
 };
 
 const updateCategory = (state, action) => {
 	const updatedCategoriesArray = [...state.categories];
-	const categoryIndex = updatedCategoriesArray.findIndex(categoryName => {
-		return categoryName === action.categoryName;
+	let categoryindex = -1;
+	const category = updatedCategoriesArray.find((category, index) => {
+		if (category.id === action.categoryId) {
+			categoryindex = index;
+			return true;
+		}
+		return false;
 	});
-	updatedCategoriesArray[categoryIndex] = action.newCategoryName;
-	const updatedState = { categories: updatedCategoriesArray };
-	return updateObject(state, updatedState);
+	if (categoryindex !== -1) {
+		const updatedCategory = updateObject(category, {
+			name: action.newCategoryName
+		});
+		updatedCategoriesArray[categoryindex] = updatedCategory;
+		const updatedState = { categories: updatedCategoriesArray };
+		localStorage.setItem('categories', JSON.stringify(updatedState));
+		return updateObject(state, updatedState);
+	}
+	return state;
 };
 
 const removeCategory = (state, action) => {
@@ -38,7 +51,13 @@ const removeCategory = (state, action) => {
 		return category.id !== action.categoryId;
 	});
 	const updatedState = { categories: updatedCategoriesArray };
+	localStorage.setItem('categories', JSON.stringify(updatedState));
 	return updateObject(state, updatedState);
+};
+
+const fetchCategories = (state, action) => {
+	const obj = localStorage.getItem('categories');
+	return updateObject(state, obj);
 };
 
 const reducer = (state = initialState, action) => {
@@ -49,6 +68,8 @@ const reducer = (state = initialState, action) => {
 			return updateCategory(state, action);
 		case actionTypes.REMOVE_CATEGORY:
 			return removeCategory(state, action);
+		case actionTypes.FETCH_CATEGORIES:
+			return fetchCategories(state, action);
 		default:
 			return state;
 	}

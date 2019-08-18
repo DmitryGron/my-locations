@@ -53,7 +53,7 @@ const CustomTable = ({ title, itemsToShow, onRemove, onUpdate }) => {
 											iconName={iconTypes.delete}
 										/>
 									</div>
-									<div onClick={onUpdate}>
+									<div onClick={() => onUpdate(item.id)}>
 										<CustomIcon iconName={iconTypes.edit} />
 									</div>
 								</InnerDiv>

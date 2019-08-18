@@ -5,9 +5,10 @@ const CategoriesModalForm = props => {
 
 	return (
 		<div>
+			<header>{props.header}</header>
 			<input
 				onChange={e => setInputValue(e.target.value)}
-				placeholder='please enter the category name'
+				placeholder='category name'
 			/>
 			<button onClick={() => props.onClick(inputValue)}>ADD</button>
 		</div>

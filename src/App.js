@@ -25,6 +25,7 @@ const Container = styled.div`
 	text-align: center;
 `;
 
+// TODO: CHANGE THIS
 const Temp = () => {
 	return (
 		<Container>
@@ -37,6 +38,7 @@ const Temp = () => {
 const App = () => {
 	const routes = (
 		<Switch>
+			{/* TODO: CHANGE THIS */}
 			<Route path={routePaths.locations} exact component={Categories} />
 			<Route path={routePaths.categories} exact component={Categories} />
 			<Route path={routePaths.home} exact component={Temp} />
@@ -44,11 +46,12 @@ const App = () => {
 		</Switch>
 	);
 	const GlobalStyle = createGlobalStyle`
-	body {
-		margin: 0;
-		font-family: sans-serif;
-	}
-  `;
+		body {
+			margin: 0;
+			font-family: sans-serif;
+		}
+	  `;
+
 	return (
 		<div>
 			<GlobalStyle />

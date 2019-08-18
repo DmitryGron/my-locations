@@ -7,10 +7,10 @@ export const addCategory = categoryName => {
 	};
 };
 
-export const updateCategory = (categoryName, newCategoryName) => {
+export const updateCategory = (categoryId, newCategoryName) => {
 	return {
 		type: actionTypes.UPDATE_CATEGORY,
-		categoryName: categoryName,
+		categoryId: categoryId,
 		newCategoryName: newCategoryName
 	};
 };
@@ -19,5 +19,11 @@ export const removeCategory = categoryId => {
 	return {
 		type: actionTypes.REMOVE_CATEGORY,
 		categoryId: categoryId
+	};
+};
+
+export const fetchCategories = () => {
+	return {
+		type: actionTypes.FETCH_CATEGORIES
 	};
 };
