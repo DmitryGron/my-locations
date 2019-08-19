@@ -9,18 +9,7 @@ import Modal from '@material-ui/core/Modal';
 import styled from 'styled-components';
 import CategoriesModalForm from '../components/Modals/CategoryModal.component';
 import LocationsModalForm from '../components/Modals/LocationsModal.component';
-
-const StyledModalBody = styled.div`
-	position: absolute;
-	width: 400px;
-	height: 400px;
-	top: 50%;
-	left: 50%;
-	background-color: white;
-	border: 2px solid #000;
-	padding: 10px;
-	transform: translate(-50%, -50%);
-`;
+import StyledModalBody from '../components/Modals/StyledModalBody';
 
 const NavbarFotterPhantomBlocker = styled.div`
 	display: block;
@@ -63,7 +52,16 @@ const Layout = props => {
 				buttonText='Add'
 			/>
 		) : (
-			<LocationsModalForm />
+			<LocationsModalForm
+				onClick={locationObject => {
+					props.addLocation(locationObject);
+					handleClose();
+				}}
+				header={
+					'please enter the location details you would like to add'
+				}
+				buttonText='Add'
+			/>
 		);
 
 	return (

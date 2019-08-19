@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 import Categories from './containers/Categories/Categories.contianer';
+import Locations from './containers/Locations/Locations.contianer';
 import Layout from './HigherOrderComponent/Layout';
 import * as routePaths from './static/routes';
 
@@ -21,7 +22,7 @@ const App = () => {
 	const routes = (
 		<Switch>
 			{/* TODO: CHANGE THIS */}
-			<Route path={routePaths.locations} exact component={Categories} />
+			<Route path={routePaths.locations} exact component={Locations} />
 			<Route path={routePaths.categories} exact component={Categories} />
 			<Route path={routePaths.home} exact component={HomePage} />
 			<Redirect to={routePaths.home} />

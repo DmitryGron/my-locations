@@ -56,7 +56,7 @@ const removeCategory = (state, action) => {
 };
 
 const fetchCategories = (state, action) => {
-	const obj = localStorage.getItem('categories');
+	const obj = JSON.parse(localStorage.getItem('categories'));
 	return updateObject(state, obj);
 };
 

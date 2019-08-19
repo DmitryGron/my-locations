@@ -2,11 +2,11 @@ import Modal from '@material-ui/core/Modal';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import CustomTable from '../../components/custom/Table.component';
-import CategoriesModalForm from '../../components/Modals/CategoryModal.component';
+import LocationsModalForm from '../../components/Modals/LocationsModal.component';
 import StyledModalBody from '../../components/Modals/StyledModalBody';
 import * as categoriesActions from '../../store/actions/categories.actions';
 
-const Categories = props => {
+const Locations = props => {
 	const [open, setOpen] = useState(false);
 	const [categoryId, setCategoryId] = useState(-1);
 
@@ -28,12 +28,12 @@ const Categories = props => {
 			<Modal open={open} onClose={handleClose}>
 				<StyledModalBody>
 					{
-						<CategoriesModalForm
+						<LocationsModalForm
 							onClick={inputValue => {
 								props.updateCategory(categoryId, inputValue);
 								handleClose();
 							}}
-							header={'please enter the new category name'}
+							header={'please enter the new location details'}
 							buttonText='Update'
 						/>
 					}
@@ -42,7 +42,7 @@ const Categories = props => {
 
 			<CustomTable
 				itemsToShow={props.categories}
-				title={'All Categories'}
+				title={'All Locations'}
 				onRemove={props.removeCategory}
 				onUpdate={handleOpen}
 			/>
@@ -70,4 +70,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Categories);
+)(Locations);
