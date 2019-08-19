@@ -1,7 +1,11 @@
 import Button from '@material-ui/core/Button';
+import Chip from '@material-ui/core/Chip';
 import Input from '@material-ui/core/Input';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 import React from 'react';
 import { Field, Form } from 'react-final-form';
+import styled from 'styled-components';
 import CustomHeader from '../custom/Header.component';
 
 const required = value => (value ? undefined : 'Required');
@@ -11,6 +15,13 @@ const composeValidators = (...validators) => value =>
 		(error, validator) => error || validator(value),
 		undefined
 	);
+
+const StyledChip = styled(Chip)`
+	background-color: #41b3a3 !important;
+	color: white !important;
+	font-size: 1rem !important;
+	margin: 5px 10px;
+`;
 
 const LocationsModalForm = props => {
 	return (
@@ -87,6 +98,33 @@ const LocationsModalForm = props => {
 										<span>{meta.error}</span>
 									)}
 								</div>
+							)}
+						</Field>
+						<Field name='categories'>
+							{({ input, meta }) => (
+								<Select
+									multiple
+									{...input}
+									renderValue={selected => (
+										<div>
+											{selected.map(value => (
+												<StyledChip
+													key={value}
+													label={value}
+												/>
+											))}
+										</div>
+									)}
+								>
+									{props.categories.map(category => (
+										<MenuItem
+											key={category.id}
+											value={category.name}
+										>
+											{category.name}
+										</MenuItem>
+									))}
+								</Select>
 							)}
 						</Field>
 						<Button type='submit' disabled={submitting}>

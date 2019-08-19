@@ -4,20 +4,28 @@ import { connect } from 'react-redux';
 import CustomTable from '../../components/custom/Table.component';
 import LocationsModalForm from '../../components/Modals/LocationsModal.component';
 import StyledModalBody from '../../components/Modals/StyledModalBody';
-import * as locationsActions from '../../store/actions/locations.actions';
+import {
+	removeLocation,
+	fetchLocations,
+	updateLocation
+} from '../../store/actions/locations.actions';
+import { fetchCategories } from '../../store/actions/categories.actions';
 
 const Locations = ({
 	fetchLocations,
 	updateLocation,
 	locations,
-	removeLocation
+	removeLocation,
+	categories,
+	fetchCategories
 }) => {
 	const [open, setOpen] = useState(false);
 	const [locationId, setLocationId] = useState(-1);
 
 	useEffect(() => {
 		fetchLocations();
-	}, [fetchLocations]);
+		fetchCategories();
+	}, [fetchLocations, fetchCategories]);
 
 	const handleOpen = locationId => {
 		setOpen(true);
@@ -32,19 +40,18 @@ const Locations = ({
 		<div>
 			<Modal open={open} onClose={handleClose}>
 				<StyledModalBody>
-					{
-						<LocationsModalForm
-							onClick={newValue => {
-								updateLocation(locationId, newValue);
-								handleClose();
-							}}
-							locationObject={locations.find(location => {
-								return location.id === locationId;
-							})}
-							header={'please enter the new location details'}
-							buttonText='Update'
-						/>
-					}
+					<LocationsModalForm
+						onClick={newValue => {
+							updateLocation(locationId, newValue);
+							handleClose();
+						}}
+						locationObject={locations.find(location => {
+							return location.id === locationId;
+						})}
+						header={'please enter the new location details'}
+						buttonText='Update'
+						categories={categories}
+					/>
 				</StyledModalBody>
 			</Modal>
 
@@ -60,18 +67,20 @@ const Locations = ({
 
 const mapStateToProps = state => {
 	return {
-		...state.locations
+		...state.locations,
+		...state.categories
 	};
 };
 
 const mapDispatchToProps = dispatch => {
 	return {
 		removeLocation: locationId => {
-			dispatch(locationsActions.removeLocation(locationId));
+			dispatch(removeLocation(locationId));
 		},
 		updateLocation: (locationId, newValue) =>
-			dispatch(locationsActions.updateLocation(locationId, newValue)),
-		fetchLocations: () => dispatch(locationsActions.fetchLocations())
+			dispatch(updateLocation(locationId, newValue)),
+		fetchLocations: () => dispatch(fetchLocations()),
+		fetchCategories: () => dispatch(fetchCategories())
 	};
 };
 

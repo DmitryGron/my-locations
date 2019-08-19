@@ -62,7 +62,8 @@ const Layout = props => {
 					'please enter the location details you would like to add'
 				}
 				buttonText='Add'
-				locationObject={{}}
+				locationObject={{ categories: [] }}
+				categories={props.categories}
 			/>
 		);
 
@@ -79,6 +80,12 @@ const Layout = props => {
 	);
 };
 
+const mapStateToProps = state => {
+	return {
+		...state.categories
+	};
+};
+
 const mapDispatchToProps = dispatch => {
 	return {
 		addCategory: categoryName => dispatch(addCategory(categoryName)),
@@ -89,6 +96,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-	null,
+	mapStateToProps,
 	mapDispatchToProps
 )(withRouter(Layout));
