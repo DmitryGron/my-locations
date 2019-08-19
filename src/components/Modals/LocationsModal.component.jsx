@@ -141,7 +141,7 @@ const LocationsModalForm = props => {
 							{props.buttonText}
 						</Button>
 						{/* <GoogleMapReact
-							bootstrapURLKeys={{ key: '' }}
+							bootstrapURLKeys={{ key: 'AIzaSyBJW1qHjP0qi1tvekNyc4uJ6tKV-D7eyTM' }}
 							defaultCenter={{
 								lat: 59.95,
 								lng: 30.33
