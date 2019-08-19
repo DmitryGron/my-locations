@@ -58,13 +58,11 @@ const Locations = ({
 			// filteredLocations = _.groupBy(filteredLocations.categories);
 		}
 		if (categoryFilterIds.length > 0) {
-			console.log(categoryFilterIds);
 			categoryFilterIds.forEach(categoryFilterId => {
 				filteredLocations = filteredLocations.filter(location => {
 					return location.categories.includes(categoryFilterId);
 				});
 			});
-			console.log(filteredLocations);
 		}
 		return filteredLocations;
 	};
