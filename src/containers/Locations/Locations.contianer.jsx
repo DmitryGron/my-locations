@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import CustomTable from '../../components/custom/Table.component';
 import LocationsModalForm from '../../components/Modals/LocationsModal.component';
 import StyledModalBody from '../../components/Modals/StyledModalBody';
-import * as categoriesActions from '../../store/actions/categories.actions';
+import * as locationsActions from '../../store/actions/locations.actions';
 
 const Locations = props => {
 	const [open, setOpen] = useState(false);
@@ -58,12 +58,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		removeCategory: categoryName => {
-			dispatch(categoriesActions.removeCategory(categoryName));
+		removeLocation: locationName => {
+			dispatch(locationsActions.updateLocation(locationName));
 		},
-		updateCategory: (categoryId, newValue) =>
-			dispatch(categoriesActions.updateCategory(categoryId, newValue)),
-		fetchCategories: () => dispatch(categoriesActions.fetchCategories())
+		updateLocation: (locationId, newValue) =>
+			dispatch(locationsActions.updateLocation(locationId, newValue)),
+		fetchLocations: () => dispatch(locationsActions.fetchLocations())
 	};
 };
 

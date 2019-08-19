@@ -1,5 +1,10 @@
 import { updateObject } from '../../shared/utility';
-import * as actionTypes from '../actions/actionTypes';
+import {
+	ADD_LOCATION,
+	REMOVE_LOCATION,
+	UPDATE_LOCATION,
+	FETCH_LOCATIONS
+} from '../actions/actionTypes';
 
 const initialState = {
 	locations: [], // [{id,name,address,latitude,longtitude,[categoriId]}]
@@ -65,13 +70,13 @@ const fetchLocations = (state, action) => {
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
-		case actionTypes.ADD_LOCATION:
+		case ADD_LOCATION:
 			return addLocation(state, action);
-		case actionTypes.UPDATE_LOCATION:
+		case UPDATE_LOCATION:
 			return updateLocation(state, action);
-		case actionTypes.REMOVE_LOCATION:
+		case REMOVE_LOCATION:
 			return removeLocation(state, action);
-		case actionTypes.FETCH_LOCATIONS:
+		case FETCH_LOCATIONS:
 			return fetchLocations(state, action);
 		default:
 			return state;

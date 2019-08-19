@@ -1,15 +1,20 @@
-import * as actionTypes from './actionTypes';
+import {
+	ADD_LOCATION,
+	REMOVE_LOCATION,
+	UPDATE_LOCATION,
+	FETCH_LOCATIONS
+} from './actionTypes';
 
 export const addLocation = locationObject => {
 	return {
-		type: actionTypes.ADD_LOCATION,
+		type: ADD_LOCATION,
 		locationObject: locationObject
 	};
 };
 
 export const updateLocation = (locationId, newLocationObject) => {
 	return {
-		type: actionTypes.UPDATE_LOCATION,
+		type: UPDATE_LOCATION,
 		locationId: locationId,
 		newLocationObject: newLocationObject
 	};
@@ -17,13 +22,13 @@ export const updateLocation = (locationId, newLocationObject) => {
 
 export const removeLocation = locationId => {
 	return {
-		type: actionTypes.REMOVE_LOCATION,
+		type: REMOVE_LOCATION,
 		locationId: locationId
 	};
 };
 
-export const fetchLocation = () => {
+export const fetchLocations = () => {
 	return {
-		type: actionTypes.FETCH_LOACTIONS
+		type: FETCH_LOCATIONS
 	};
 };
