@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import CustomTable from '../../components/custom/Table.component';
 import LocationsModalForm from '../../components/Modals/LocationsModal.component';
 import StyledModalBody from '../../components/Modals/StyledModalBody';
+import { fetchCategories } from '../../store/actions/categories.actions';
 import {
-	removeLocation,
 	fetchLocations,
+	removeLocation,
 	updateLocation
 } from '../../store/actions/locations.actions';
-import { fetchCategories } from '../../store/actions/categories.actions';
 
 const Locations = ({
 	fetchLocations,
@@ -17,7 +17,10 @@ const Locations = ({
 	locations,
 	removeLocation,
 	categories,
-	fetchCategories
+	fetchCategories,
+	alphabetically,
+	grouped,
+	categoryFilterId
 }) => {
 	const [open, setOpen] = useState(false);
 	const [locationId, setLocationId] = useState(-1);
@@ -34,6 +37,32 @@ const Locations = ({
 
 	const handleClose = () => {
 		setOpen(false);
+	};
+
+	const getFilteredLocations = () => {
+		let filteredLocations = [...locations];
+		if (alphabetically) {
+			filteredLocations = filteredLocations.sort(
+				(locationA, locationB) => {
+					if (locationA.name < locationB.name) {
+						return -1;
+					}
+					if (locationA.name > locationB.name) {
+						return 1;
+					}
+					return 0;
+				}
+			);
+		}
+		if (grouped) {
+			// filteredLocations = _.groupBy(filteredLocations.categories);
+		}
+		if (categoryFilterId !== -1) {
+			filteredLocations = filteredLocations.filter(location => {
+				return location.id !== categoryFilterId;
+			});
+		}
+		return filteredLocations;
 	};
 
 	return (
@@ -56,7 +85,7 @@ const Locations = ({
 			</Modal>
 
 			<CustomTable
-				itemsToShow={locations}
+				itemsToShow={getFilteredLocations()}
 				title={'All Locations'}
 				onRemove={removeLocation}
 				onUpdate={handleOpen}
@@ -68,7 +97,10 @@ const Locations = ({
 const mapStateToProps = state => {
 	return {
 		...state.locations,
-		...state.categories
+		...state.categories,
+		grouped: state.locations.grouped,
+		alphabetically: state.locations.alphabetically,
+		categoryFilterId: state.locations.categoryFilterId
 	};
 };
 

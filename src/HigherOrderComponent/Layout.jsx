@@ -1,16 +1,21 @@
+import Modal from '@material-ui/core/Modal';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { addCategory } from '../store/actions/categories.actions';
-import { addLocation } from '../store/actions/locations.actions';
-import Navbar from '../components/Navbar/Navbar.component';
-import Toolbar from '../containers/Toolbar/Toolbar.container';
-import * as routes from '../static/routes';
-import Modal from '@material-ui/core/Modal';
 import styled from 'styled-components';
 import CategoriesModalForm from '../components/Modals/CategoryModal.component';
 import LocationsModalForm from '../components/Modals/LocationsModal.component';
 import StyledModalBody from '../components/Modals/StyledModalBody';
+import Navbar from '../components/Navbar/Navbar.component';
+import Toolbar from '../containers/Toolbar/Toolbar.container';
+import * as routes from '../static/routes';
+import { addCategory } from '../store/actions/categories.actions';
+import {
+	addLocation,
+	setAlphabeticallySort,
+	setCategoryFilter,
+	setGroupedSort
+} from '../store/actions/locations.actions';
 
 const NavbarFotterPhantomBlocker = styled.div`
 	display: block;
@@ -31,11 +36,35 @@ const Layout = props => {
 
 	const categoriesPageProps = {
 		title: 'Categories',
-		handleOpen: handleOpen
+		buttons: [
+			{
+				buttonText: 'Add',
+				onClick: handleOpen
+			}
+		]
 	};
 	const locationsPageProps = {
 		title: 'Locations',
-		handleOpen: handleOpen
+		buttons: [
+			{
+				buttonText: 'Filter By Category',
+				onClick: props.handleFilterByCategory
+			},
+			{
+				buttonText: props.grouped ? 'UnGroup' : 'Group',
+				onClick: props.setGroupedSort
+			},
+			{
+				buttonText: props.alphabetically
+					? 'Unsort Alphabetically'
+					: 'Sort Alphabetically',
+				onClick: props.setAlphabeticallySort
+			},
+			{
+				buttonText: 'Add',
+				onClick: handleOpen
+			}
+		]
 	};
 	const toolbarProps =
 		props.location.pathname === routes.categories
@@ -82,7 +111,10 @@ const Layout = props => {
 
 const mapStateToProps = state => {
 	return {
-		...state.categories
+		...state.categories,
+		grouped: state.locations.grouped,
+		alphabetically: state.locations.alphabetically,
+		categoryFilterId: state.locations.categoryFilterId
 	};
 };
 
@@ -91,6 +123,15 @@ const mapDispatchToProps = dispatch => {
 		addCategory: categoryName => dispatch(addCategory(categoryName)),
 		addLocation: locationObject => {
 			dispatch(addLocation(locationObject));
+		},
+		setGroupedSort: () => {
+			dispatch(setGroupedSort());
+		},
+		setAlphabeticallySort: () => {
+			dispatch(setAlphabeticallySort());
+		},
+		setCategoryFilter: () => {
+			dispatch(setCategoryFilter());
 		}
 	};
 };

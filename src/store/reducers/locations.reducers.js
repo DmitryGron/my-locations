@@ -1,14 +1,20 @@
 import { updateObject } from '../../shared/utility';
 import {
 	ADD_LOCATION,
+	FETCH_LOCATIONS,
 	REMOVE_LOCATION,
-	UPDATE_LOCATION,
-	FETCH_LOCATIONS
+	SET_ALPHABETICALLY_SORT,
+	SET_CATEGORY_FILTER,
+	SET_GROUPED_SORT,
+	UPDATE_LOCATION
 } from '../actions/actionTypes';
 
 const initialState = {
-	locations: [], // [{id,name,address,latitude,longtitude,[categoriId]}]
-	counter: 0
+	locations: [], // [{id,name,address,latitude,longtitude,categories:[int]}]
+	counter: 0,
+	grouped: false,
+	alphabetically: false,
+	categoryFilterId: -1
 };
 
 const addLocation = (state, action) => {
@@ -68,6 +74,18 @@ const fetchLocations = (state, action) => {
 	return updateObject(state, obj);
 };
 
+const setGroupedSort = (state, action) => {
+	return updateObject(state, { grouped: !state.grouped });
+};
+
+const setAlphabeticallySort = (state, action) => {
+	return updateObject(state, { alphabetically: !state.alphabetically });
+};
+
+const setCategoryFilter = (state, action) => {
+	return updateObject(state, { categoryFilterId: !state.categoryFilterId });
+};
+
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_LOCATION:
@@ -78,6 +96,12 @@ const reducer = (state = initialState, action) => {
 			return removeLocation(state, action);
 		case FETCH_LOCATIONS:
 			return fetchLocations(state, action);
+		case SET_GROUPED_SORT:
+			return setGroupedSort(state, action);
+		case SET_ALPHABETICALLY_SORT:
+			return setAlphabeticallySort(state, action);
+		case SET_CATEGORY_FILTER:
+			return setCategoryFilter(state, action);
 		default:
 			return state;
 	}

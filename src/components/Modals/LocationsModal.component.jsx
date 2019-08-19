@@ -7,7 +7,7 @@ import React from 'react';
 import { Field, Form } from 'react-final-form';
 import styled from 'styled-components';
 import CustomHeader from '../custom/Header.component';
-import GoogleMapReact from 'google-map-react';
+// import GoogleMapReact from 'google-map-react';
 
 const required = value => (value ? undefined : 'Required');
 const mustBeNumber = value => (isNaN(value) ? 'Must be a number' : undefined);
@@ -111,7 +111,16 @@ const LocationsModalForm = props => {
 											{selected.map(value => (
 												<StyledChip
 													key={value}
-													label={value}
+													label={
+														props.categories.find(
+															category => {
+																return (
+																	category.id ===
+																	value
+																);
+															}
+														).name
+													}
 												/>
 											))}
 										</div>
@@ -120,7 +129,7 @@ const LocationsModalForm = props => {
 									{props.categories.map(category => (
 										<MenuItem
 											key={category.id}
-											value={category.name}
+											value={category.id}
 										>
 											{category.name}
 										</MenuItem>

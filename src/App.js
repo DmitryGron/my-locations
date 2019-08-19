@@ -21,7 +21,6 @@ const HomePage = () => {
 const App = () => {
 	const routes = (
 		<Switch>
-			{/* TODO: CHANGE THIS */}
 			<Route path={routePaths.locations} exact component={Locations} />
 			<Route path={routePaths.categories} exact component={Categories} />
 			<Route path={routePaths.home} exact component={HomePage} />

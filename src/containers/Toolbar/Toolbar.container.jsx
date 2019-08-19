@@ -6,8 +6,11 @@ const StyledButton = styled(Button)`
 	border: 0;
 	color: white !important;
 	font-size: 1rem !important;
+	font-weight: bold !important;
 	height: 48px;
-	padding: 0 30px;
+	padding: 0 20px !important;
+	border-left: 1.5px solid white !important;
+	border-radius: 0px !important;
 `;
 
 const ToolbarDiv = styled.div`
@@ -30,13 +33,16 @@ const Toolbar = props => {
 		<ToolbarDiv>
 			<StyledHeader>{props.title}</StyledHeader>
 			<div>
-				<StyledButton
-					onClick={() => {
-						props.handleOpen();
-					}}
-				>
-					Add
-				</StyledButton>
+				{props.buttons.map(button => {
+					return (
+						<StyledButton
+							key={button.buttonText}
+							onClick={button.onClick}
+						>
+							{button.buttonText}
+						</StyledButton>
+					);
+				})}
 			</div>
 		</ToolbarDiv>
 	);
