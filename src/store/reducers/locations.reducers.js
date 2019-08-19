@@ -14,7 +14,7 @@ const initialState = {
 	counter: 0,
 	grouped: false,
 	alphabetically: false,
-	categoryFilterId: -1
+	categoryFilterIds: []
 };
 
 const addLocation = (state, action) => {
@@ -83,7 +83,7 @@ const setAlphabeticallySort = (state, action) => {
 };
 
 const setCategoryFilter = (state, action) => {
-	return updateObject(state, { categoryFilterId: !state.categoryFilterId });
+	return updateObject(state, { categoryFilterIds: action.categoryFilterIds });
 };
 
 const reducer = (state = initialState, action) => {

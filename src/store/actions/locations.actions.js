@@ -48,8 +48,9 @@ export const setAlphabeticallySort = () => {
 	};
 };
 
-export const setCategoryFilter = () => {
+export const setCategoryFilter = categoryFilterIds => {
 	return {
-		type: SET_CATEGORY_FILTER
+		type: SET_CATEGORY_FILTER,
+		categoryFilterIds: categoryFilterIds
 	};
 };

@@ -20,7 +20,7 @@ const Locations = ({
 	fetchCategories,
 	alphabetically,
 	grouped,
-	categoryFilterId
+	categoryFilterIds
 }) => {
 	const [open, setOpen] = useState(false);
 	const [locationId, setLocationId] = useState(-1);
@@ -57,10 +57,14 @@ const Locations = ({
 		if (grouped) {
 			// filteredLocations = _.groupBy(filteredLocations.categories);
 		}
-		if (categoryFilterId !== -1) {
-			filteredLocations = filteredLocations.filter(location => {
-				return location.id !== categoryFilterId;
+		if (categoryFilterIds.length > 0) {
+			console.log(categoryFilterIds);
+			categoryFilterIds.forEach(categoryFilterId => {
+				filteredLocations = filteredLocations.filter(location => {
+					return location.categories.includes(categoryFilterId);
+				});
 			});
+			console.log(filteredLocations);
 		}
 		return filteredLocations;
 	};
@@ -100,7 +104,7 @@ const mapStateToProps = state => {
 		...state.categories,
 		grouped: state.locations.grouped,
 		alphabetically: state.locations.alphabetically,
-		categoryFilterId: state.locations.categoryFilterId
+		categoryFilterIds: state.locations.categoryFilterIds
 	};
 };
 

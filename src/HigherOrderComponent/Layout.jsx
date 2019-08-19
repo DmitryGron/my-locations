@@ -48,7 +48,9 @@ const Layout = props => {
 		buttons: [
 			{
 				buttonText: 'Filter By Category',
-				onClick: props.handleFilterByCategory
+				categoryFilterIds: props.categoryFilterIds,
+				setCategoryFilter: props.setNewCategoryFilter,
+				categories: props.categories
 			},
 			{
 				buttonText: props.grouped ? 'UnGroup' : 'Group',
@@ -114,7 +116,7 @@ const mapStateToProps = state => {
 		...state.categories,
 		grouped: state.locations.grouped,
 		alphabetically: state.locations.alphabetically,
-		categoryFilterId: state.locations.categoryFilterId
+		categoryFilterIds: state.locations.categoryFilterIds
 	};
 };
 
@@ -130,8 +132,8 @@ const mapDispatchToProps = dispatch => {
 		setAlphabeticallySort: () => {
 			dispatch(setAlphabeticallySort());
 		},
-		setCategoryFilter: () => {
-			dispatch(setCategoryFilter());
+		setNewCategoryFilter: categoryFilterIds => {
+			dispatch(setCategoryFilter(categoryFilterIds));
 		}
 	};
 };
