@@ -15,11 +15,11 @@ const addLocation = (state, action) => {
 	const updatedLocationsArray = [...state.locations];
 	updatedLocationsArray.push({
 		id: state.counter,
-		name: action.locationName,
-		address: action.address,
-		latitude: action.latitude,
-		longtitude: action.longtitude,
-		categories: action.categories
+		name: action.locationObject.name,
+		address: action.locationObject.address,
+		latitude: action.locationObject.latitude,
+		longtitude: action.locationObject.longtitude,
+		categories: action.locationObject.categories
 	});
 
 	const updatedState = {
@@ -31,7 +31,7 @@ const addLocation = (state, action) => {
 };
 
 const updateLocation = (state, action) => {
-	const updatedLocationsArray = [...state.categories];
+	const updatedLocationsArray = [...state.locations];
 	let locationIndex = -1;
 	const location = updatedLocationsArray.find((location, index) => {
 		if (location.id === action.locationId) {
@@ -54,7 +54,7 @@ const updateLocation = (state, action) => {
 };
 
 const removeLocation = (state, action) => {
-	const oldLocationsArray = [...state.categories];
+	const oldLocationsArray = [...state.locations];
 	const updatedLocationsArray = oldLocationsArray.filter(location => {
 		return location.id !== action.locationId;
 	});

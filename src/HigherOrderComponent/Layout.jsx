@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import * as categoriesActions from '../store/actions/categories.actions';
+import { addCategory } from '../store/actions/categories.actions';
+import { addLocation } from '../store/actions/locations.actions';
 import Navbar from '../components/Navbar/Navbar.component';
 import Toolbar from '../containers/Toolbar/Toolbar.container';
 import * as routes from '../static/routes';
@@ -61,6 +62,7 @@ const Layout = props => {
 					'please enter the location details you would like to add'
 				}
 				buttonText='Add'
+				locationObject={{}}
 			/>
 		);
 
@@ -79,8 +81,10 @@ const Layout = props => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		addCategory: categoryName =>
-			dispatch(categoriesActions.addCategory(categoryName))
+		addCategory: categoryName => dispatch(addCategory(categoryName)),
+		addLocation: locationObject => {
+			dispatch(addLocation(locationObject));
+		}
 	};
 };
 

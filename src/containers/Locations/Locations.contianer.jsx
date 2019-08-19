@@ -6,13 +6,18 @@ import LocationsModalForm from '../../components/Modals/LocationsModal.component
 import StyledModalBody from '../../components/Modals/StyledModalBody';
 import * as locationsActions from '../../store/actions/locations.actions';
 
-const Locations = props => {
+const Locations = ({
+	fetchLocations,
+	updateLocation,
+	locations,
+	removeLocation
+}) => {
 	const [open, setOpen] = useState(false);
 	const [locationId, setLocationId] = useState(-1);
 
 	useEffect(() => {
-		props.fetchLocations();
-	}, [props]);
+		fetchLocations();
+	}, [fetchLocations]);
 
 	const handleOpen = locationId => {
 		setOpen(true);
@@ -30,9 +35,12 @@ const Locations = props => {
 					{
 						<LocationsModalForm
 							onClick={newValue => {
-								props.updateLocation(locationId, newValue);
+								updateLocation(locationId, newValue);
 								handleClose();
 							}}
+							locationObject={locations.find(location => {
+								return location.id === locationId;
+							})}
 							header={'please enter the new location details'}
 							buttonText='Update'
 						/>
@@ -41,9 +49,9 @@ const Locations = props => {
 			</Modal>
 
 			<CustomTable
-				itemsToShow={props.locations}
+				itemsToShow={locations}
 				title={'All Locations'}
-				onRemove={props.removeLocation}
+				onRemove={removeLocation}
 				onUpdate={handleOpen}
 			/>
 		</div>
@@ -59,7 +67,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
 	return {
 		removeLocation: locationId => {
-			dispatch(locationsActions.updateLocation(locationId));
+			dispatch(locationsActions.removeLocation(locationId));
 		},
 		updateLocation: (locationId, newValue) =>
 			dispatch(locationsActions.updateLocation(locationId, newValue)),

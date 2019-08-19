@@ -4,11 +4,12 @@ import Input from '@material-ui/core/Input';
 
 const StyledInput = styled(Input)``;
 
-const CustomInput = props => {
+const CustomInput = ({ placeholder, onChange, defaultValue }) => {
 	return (
 		<StyledInput
-			placeholder={props.placeholder}
-			onChange={props.onChange}
+			placeholder={placeholder}
+			onChange={onChange}
+			defaultValue={defaultValue}
 		/>
 	);
 };

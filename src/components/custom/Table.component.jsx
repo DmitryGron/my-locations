@@ -52,7 +52,11 @@ const CustomTable = ({ title, itemsToShow, onRemove, onUpdate }) => {
 							<RowDiv>
 								<TableData>{item.name}</TableData>
 								<InnerDiv>
-									<div onClick={() => onRemove(item.id)}>
+									<div
+										onClick={() => {
+											onRemove(item.id);
+										}}
+									>
 										<ActionIcon
 											iconName={iconTypes.delete}
 										/>
