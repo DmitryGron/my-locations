@@ -68,10 +68,12 @@ const Layout = props => {
 			}
 		]
 	};
-	const toolbarProps =
-		props.location.pathname === routes.categories
-			? { ...categoriesPageProps }
-			: { ...locationsPageProps };
+	let toolbarProps = { title: 'Home Page', buttons: [] };
+	if (props.location.pathname === routes.categories) {
+		toolbarProps = { ...categoriesPageProps };
+	} else if (props.location.pathname === routes.locations) {
+		toolbarProps = { ...locationsPageProps };
+	}
 
 	const modalFormContent =
 		props.location.pathname === routes.categories ? (
