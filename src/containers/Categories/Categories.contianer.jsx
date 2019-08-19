@@ -46,6 +46,7 @@ const Categories = props => {
 								handleClose();
 							}}
 							header={'please enter the new category name'}
+							buttonText='Update'
 						/>
 					}
 				</StyledModalBody>

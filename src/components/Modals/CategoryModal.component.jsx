@@ -14,7 +14,7 @@ const CategoriesModalForm = props => {
 				placeholder='category name'
 			/>
 			<CustomButton onClick={() => props.onClick(inputValue)}>
-				ADD
+				{props.buttonText}
 			</CustomButton>
 		</div>
 	);

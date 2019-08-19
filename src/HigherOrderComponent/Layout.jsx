@@ -60,6 +60,7 @@ const Layout = props => {
 					handleClose();
 				}}
 				header={'please enter the category name you would like to add'}
+				buttonText='Add'
 			/>
 		) : (
 			<LocationsModalForm />
