@@ -22,7 +22,7 @@ const Locations = ({
 	grouped,
 	categoryFilterIds
 }) => {
-	const [open, setOpen] = useState(false);
+	const [formModalOpen, setOpen] = useState(false);
 	const [locationId, setLocationId] = useState(-1);
 
 	useEffect(() => {
@@ -55,7 +55,26 @@ const Locations = ({
 			);
 		}
 		if (grouped) {
-			// filteredLocations = _.groupBy(filteredLocations.categories);
+			const sumOfArray = (total, num) => {
+				return total + num;
+			};
+			filteredLocations = filteredLocations.sort(
+				(locationA, locationB) => {
+					if (
+						locationA.categories.reduce(sumOfArray) <
+						locationB.categories.reduce(sumOfArray)
+					) {
+						return -1;
+					}
+					if (
+						locationA.categories.reduce(sumOfArray) >
+						locationB.categories.reduce(sumOfArray)
+					) {
+						return 1;
+					}
+					return 0;
+				}
+			);
 		}
 		if (categoryFilterIds.length > 0) {
 			categoryFilterIds.forEach(categoryFilterId => {
@@ -69,7 +88,7 @@ const Locations = ({
 
 	return (
 		<div>
-			<Modal open={open} onClose={handleClose}>
+			<Modal open={formModalOpen} onClose={handleClose}>
 				<StyledModalBody>
 					<LocationsModalForm
 						onClick={newValue => {
