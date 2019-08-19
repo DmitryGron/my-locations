@@ -6,6 +6,7 @@
 		"@material-ui/core": "^4.3.2",
 		"@material-ui/icons": "^4.2.1",
 		"final-form": "^4.18.5",
+		"google-map-react": "^1.1.4",
 		"react": "^16.9.0",
 		"react-dom": "^16.9.0",
 		"react-final-form": "^6.3.0",

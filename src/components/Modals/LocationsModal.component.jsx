@@ -7,6 +7,7 @@ import React from 'react';
 import { Field, Form } from 'react-final-form';
 import styled from 'styled-components';
 import CustomHeader from '../custom/Header.component';
+import GoogleMapReact from 'google-map-react';
 
 const required = value => (value ? undefined : 'Required');
 const mustBeNumber = value => (isNaN(value) ? 'Must be a number' : undefined);
@@ -130,6 +131,19 @@ const LocationsModalForm = props => {
 						<Button type='submit' disabled={submitting}>
 							{props.buttonText}
 						</Button>
+						{/* <GoogleMapReact
+							bootstrapURLKeys={{ key: '' }}
+							defaultCenter={{
+								lat: 59.95,
+								lng: 30.33
+							}}
+							defaultZoom={11}
+							yesIWantToUseGoogleMapApiInternals
+						>
+							<div lat={59.955413} lng={30.337844}>
+								My Marker
+							</div>
+						</GoogleMapReact> */}
 					</form>
 				)}
 			/>
