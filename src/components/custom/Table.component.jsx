@@ -17,7 +17,7 @@ const TableHead = styled.thead`
 	color: #41b3a3;
 `;
 
-const TableData = styled.td`
+const TableData = styled.div`
 	font-size: 1.5rem;
 	color: #60544e;
 	text-align: left;
@@ -31,7 +31,7 @@ const RowDiv = styled.td`
 	border-bottom: 1px solid #b5a29b;
 `;
 
-const InnerDiv = styled.td`
+const InnerDiv = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -40,7 +40,11 @@ const InnerDiv = styled.td`
 const CustomTable = ({ title, itemsToShow, onRemove, onUpdate }) => {
 	return (
 		<Table>
-			<TableHead>{title}</TableHead>
+			<TableHead>
+				<tr>
+					<td>{title}</td>
+				</tr>
+			</TableHead>
 			<tbody>
 				{itemsToShow.map(item => {
 					return (

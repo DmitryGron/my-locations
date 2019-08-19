@@ -1,17 +1,25 @@
-import React from 'react';
+// import React, { useState } from 'react';
+// import CustomInput from '../custom/Input.component';
+// import CustomButton from '../custom/Button.component';
+// import CustomHeader from '../custom/Header.component';
 
-const LocationsModalForm = props => {
-	return (
-		<div>
-			<input
-				onChange={props.onChange}
-				placeholder='please enter the category name'
-			/>
-			<button type='submit' onClick={props.onClick}>
-				ADD
-			</button>
-		</div>
-	);
-};
+// const LocationsModalForm = props => {
+// 	const [locationObject, setLocationObject] = useState({
+// 		...props.locationObject
+// 	});
 
-export default LocationsModalForm;
+// 	return (
+// 		<div>
+// 			<CustomHeader>{props.header}</CustomHeader>
+// 			<CustomInput
+// 				onChange={e => setInputValue(e.target.value)}
+// 				placeholder='location name'
+// 			/>
+// 			<CustomButton onClick={() => props.onClick(inputValue)}>
+// 				{props.buttonText}
+// 			</CustomButton>
+// 		</div>
+// 	);
+// };
+
+// export default LocationsModalForm;

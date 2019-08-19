@@ -6,13 +6,18 @@ import CategoriesModalForm from '../../components/Modals/CategoryModal.component
 import StyledModalBody from '../../components/Modals/StyledModalBody';
 import * as categoriesActions from '../../store/actions/categories.actions';
 
-const Categories = props => {
+const Categories = ({
+	fetchCategories,
+	updateCategory,
+	categories,
+	removeCategory
+}) => {
 	const [open, setOpen] = useState(false);
 	const [categoryId, setCategoryId] = useState(-1);
 
 	useEffect(() => {
-		props.fetchCategories();
-	}, [props]);
+		fetchCategories();
+	}, [fetchCategories]);
 
 	const handleOpen = categoryId => {
 		setOpen(true);
@@ -30,7 +35,7 @@ const Categories = props => {
 					{
 						<CategoriesModalForm
 							onClick={inputValue => {
-								props.updateCategory(categoryId, inputValue);
+								updateCategory(categoryId, inputValue);
 								handleClose();
 							}}
 							header={'please enter the new category name'}
@@ -41,9 +46,9 @@ const Categories = props => {
 			</Modal>
 
 			<CustomTable
-				itemsToShow={props.categories}
+				itemsToShow={categories}
 				title={'All Categories'}
-				onRemove={props.removeCategory}
+				onRemove={removeCategory}
 				onUpdate={handleOpen}
 			/>
 		</div>
@@ -58,8 +63,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		removeCategory: categoryName => {
-			dispatch(categoriesActions.removeCategory(categoryName));
+		removeCategory: categoryId => {
+			dispatch(categoriesActions.removeCategory(categoryId));
 		},
 		updateCategory: (categoryId, newValue) =>
 			dispatch(categoriesActions.updateCategory(categoryId, newValue)),

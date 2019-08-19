@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 const StyledModalDiv = styled.div`
@@ -13,8 +12,4 @@ const StyledModalDiv = styled.div`
 	transform: translate(-50%, -50%);
 `;
 
-const StyledModalBody = props => (
-	<StyledModalDiv>{props.children}</StyledModalDiv>
-);
-
-export default StyledModalBody;
+export default StyledModalDiv;

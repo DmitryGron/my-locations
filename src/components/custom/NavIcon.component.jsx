@@ -4,7 +4,9 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import iconTypes from '../../static/iconTypes';
 
-const CategoriesIconStyle = styled(FormatListBulletedIcon)`
+const CategoriesIconStyle = styled(({ active: _ignore, ...props }) => (
+	<FormatListBulletedIcon {...props} />
+))`
 	color: #41b3a3;
 	font-size: 3rem !important;
 
@@ -20,7 +22,9 @@ const CategoriesIconStyle = styled(FormatListBulletedIcon)`
 		`}
 `;
 
-const LocationsIconStyle = styled(MapIcon)`
+const LocationsIconStyle = styled(({ active: _ignore, ...props }) => (
+	<MapIcon {...props} />
+))`
 	color: #41b3a3;
 	font-size: 3rem !important;
 
