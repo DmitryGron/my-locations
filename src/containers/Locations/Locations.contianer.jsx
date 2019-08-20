@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import CustomTable from '../../components/custom/Table.component';
 import LocationsModalForm from '../../components/Modals/LocationsModal.component';
+import LocationsModalDetails from '../../components/Modals/LocationModalDetails';
 import StyledModalBody from '../../components/Modals/StyledModalBody';
 import { fetchCategories } from '../../store/actions/categories.actions';
 import {
@@ -22,7 +23,11 @@ const Locations = ({
 	grouped,
 	categoryFilterIds
 }) => {
-	const [formModalOpen, setOpen] = useState(false);
+	const [formModalOpen, setFormModalOpen] = useState(false);
+	const [
+		locationDetailsModalOpen,
+		setLocationDetailsModalOpenOpen
+	] = useState(false);
 	const [locationId, setLocationId] = useState(-1);
 
 	useEffect(() => {
@@ -30,13 +35,22 @@ const Locations = ({
 		fetchCategories();
 	}, [fetchLocations, fetchCategories]);
 
-	const handleOpen = locationId => {
-		setOpen(true);
+	const handleFormOpen = locationId => {
+		setFormModalOpen(true);
 		setLocationId(locationId);
 	};
 
-	const handleClose = () => {
-		setOpen(false);
+	const handleFormClose = () => {
+		setFormModalOpen(false);
+	};
+
+	const handleDetailsOpen = locationId => {
+		setLocationDetailsModalOpenOpen(true);
+		setLocationId(locationId);
+	};
+
+	const handleDetailsClose = () => {
+		setLocationDetailsModalOpenOpen(false);
 	};
 
 	const getFilteredLocations = () => {
@@ -88,20 +102,35 @@ const Locations = ({
 
 	return (
 		<div>
-			<Modal open={formModalOpen} onClose={handleClose}>
+			<Modal
+				open={formModalOpen || locationDetailsModalOpen}
+				onClose={() => {
+					handleFormClose();
+					handleDetailsClose();
+				}}
+			>
 				<StyledModalBody>
-					<LocationsModalForm
-						onClick={newValue => {
-							updateLocation(locationId, newValue);
-							handleClose();
-						}}
-						locationObject={locations.find(location => {
-							return location.id === locationId;
-						})}
-						header={'please enter the new location details'}
-						buttonText='Update'
-						categories={categories}
-					/>
+					{locationDetailsModalOpen ? (
+						<LocationsModalDetails
+							locationObject={locations.find(location => {
+								return location.id === locationId;
+							})}
+							categories={categories}
+						/>
+					) : (
+						<LocationsModalForm
+							onClick={newValue => {
+								updateLocation(locationId, newValue);
+								handleFormClose();
+							}}
+							locationObject={locations.find(location => {
+								return location.id === locationId;
+							})}
+							header={'please enter the new location details'}
+							buttonText='Update'
+							categories={categories}
+						/>
+					)}
 				</StyledModalBody>
 			</Modal>
 
@@ -109,7 +138,8 @@ const Locations = ({
 				itemsToShow={getFilteredLocations()}
 				title={'All Locations'}
 				onRemove={removeLocation}
-				onUpdate={handleOpen}
+				onUpdate={handleFormOpen}
+				onItemClick={handleDetailsOpen}
 			/>
 		</div>
 	);

@@ -21,6 +21,11 @@ const TableData = styled.div`
 	font-size: 1.5rem;
 	color: #60544e;
 	text-align: left;
+	cursor: pointer;
+
+	&:hover {
+		color: #a55911;
+	}
 `;
 
 const RowDiv = styled.td`
@@ -37,7 +42,13 @@ const InnerDiv = styled.div`
 	align-items: center;
 `;
 
-const CustomTable = ({ title, itemsToShow, onRemove, onUpdate }) => {
+const CustomTable = ({
+	title,
+	itemsToShow,
+	onRemove,
+	onUpdate,
+	onItemClick
+}) => {
 	return (
 		<Table>
 			<TableHead>
@@ -50,7 +61,9 @@ const CustomTable = ({ title, itemsToShow, onRemove, onUpdate }) => {
 					return (
 						<tr key={item.id}>
 							<RowDiv>
-								<TableData>{item.name}</TableData>
+								<TableData onClick={() => onItemClick(item.id)}>
+									{item.name}
+								</TableData>
 								<InnerDiv>
 									<div
 										onClick={() => {
