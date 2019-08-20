@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import * as routes from '../../../static/routes';
 import NavigationItem from './NavigationItem/NavigationItem';
-import NavIcon from '../../custom/NavIcon.component';
+import NavIcon from '../../custom/NavIcon';
 import iconTypes from '../../../static/iconTypes';
 
 const NavContainer = styled.div`

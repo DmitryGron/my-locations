@@ -6,7 +6,7 @@ import Select from '@material-ui/core/Select';
 import React from 'react';
 import { Field, Form } from 'react-final-form';
 import styled from 'styled-components';
-import CustomHeader from '../custom/Header.component';
+import CustomHeader from '../custom/Header';
 // import GoogleMapReact from 'google-map-react';
 
 const required = value => (value ? undefined : 'Required');

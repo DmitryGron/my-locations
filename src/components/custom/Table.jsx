@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import iconTypes from '../../static/iconTypes';
-import ActionIcon from './ActionIcon.component';
+import ActionIcon from './ActionIcon';
 
 const Table = styled.table`
 	width: 100%;

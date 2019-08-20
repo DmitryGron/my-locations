@@ -1,8 +1,8 @@
 import React from 'react';
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
-import Categories from './containers/Categories/Categories.contianer';
-import Locations from './containers/Locations/Locations.contianer';
+import Categories from './containers/Categories/Categories';
+import Locations from './containers/Locations/Locations';
 import Layout from './HigherOrderComponent/Layout';
 import * as routePaths from './static/routes';
 

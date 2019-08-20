@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
-import CategoriesModalForm from '../components/Modals/CategoryModal.component';
-import LocationsModalForm from '../components/Modals/LocationsModal.component';
+import CategoriesModalForm from '../components/Modals/CategoryModal';
+import LocationsModalForm from '../components/Modals/LocationsModal';
 import StyledModalBody from '../components/Modals/StyledModalBody';
-import Navbar from '../components/Navbar/Navbar.component';
-import Toolbar from '../containers/Toolbar/Toolbar.container';
+import Navbar from '../components/Navbar/Navbar';
+import Toolbar from '../containers/Toolbar/Toolbar';
 import * as routes from '../static/routes';
 import { addCategory } from '../store/actions/categories.actions';
 import {

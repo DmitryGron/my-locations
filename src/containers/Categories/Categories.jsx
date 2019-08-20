@@ -1,8 +1,8 @@
 import Modal from '@material-ui/core/Modal';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import CustomTable from '../../components/custom/Table.component';
-import CategoriesModalForm from '../../components/Modals/CategoryModal.component';
+import CustomTable from '../../components/custom/Table';
+import CategoriesModalForm from '../../components/Modals/CategoryModal';
 import StyledModalBody from '../../components/Modals/StyledModalBody';
 import * as categoriesActions from '../../store/actions/categories.actions';
 

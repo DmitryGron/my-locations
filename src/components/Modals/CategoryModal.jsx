@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import CustomInput from '../custom/Input.component';
-import CustomButton from '../custom/Button.component';
-import CustomHeader from '../custom/Header.component';
+import CustomInput from '../custom/Input';
+import CustomButton from '../custom/Button';
+import CustomHeader from '../custom/Header';
 
 const CategoriesModalForm = props => {
 	const [inputValue, setInputValue] = useState('');
