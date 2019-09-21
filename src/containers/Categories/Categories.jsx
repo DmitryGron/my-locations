@@ -50,6 +50,7 @@ const Categories = ({
 				title={'All Categories'}
 				onRemove={removeCategory}
 				onUpdate={handleOpen}
+				onItemClick={id => handleOpen(id)}
 			/>
 		</div>
 	);
