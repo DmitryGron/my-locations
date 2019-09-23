@@ -4,13 +4,12 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import GoogleMapReact from 'google-map-react';
 import React from 'react';
 import { Field, Form } from 'react-final-form';
 import styled from 'styled-components';
 import CustomButton from '../custom/Button';
 import CustomHeader from '../custom/Header';
-
-// import GoogleMapReact from 'google-map-react';
 
 const required = value => (value ? undefined : 'Required');
 const mustBeNumber = value => (isNaN(value) ? 'Must be a number' : undefined);
@@ -179,8 +178,10 @@ const LocationsModalForm = props => {
 						<CustomButton type='submit' disabled={submitting}>
 							{props.buttonText}
 						</CustomButton>
-						{/* <GoogleMapReact
-							bootstrapURLKeys={{ key: 'AIzaSyBJW1qHjP0qi1tvekNyc4uJ6tKV-D7eyTM' }}
+						<GoogleMapReact
+							bootstrapURLKeys={{
+								key: 'AIzaSyBJW1qHjP0qi1tvekNyc4uJ6tKV-D7eyTM'
+							}}
 							defaultCenter={{
 								lat: 59.95,
 								lng: 30.33
@@ -191,7 +192,7 @@ const LocationsModalForm = props => {
 							<div lat={59.955413} lng={30.337844}>
 								My Marker
 							</div>
-						</GoogleMapReact> */}
+						</GoogleMapReact>
 					</FormWrapper>
 				)}
 			/>
