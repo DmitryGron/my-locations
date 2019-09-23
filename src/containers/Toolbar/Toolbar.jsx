@@ -47,7 +47,10 @@ const Toolbar = ({ title, buttons }) => {
 							{button.buttonText}
 						</StyledButton>
 					) : (
-						<CategoriesSelect button={button} />
+						<CategoriesSelect
+							key={button.buttonText}
+							button={button}
+						/>
 					);
 				})}
 			</Wrapper>

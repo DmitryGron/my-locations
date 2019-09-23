@@ -34,6 +34,7 @@ const LocationsModalDetails = ({ locationObject, categories }) => {
 				{locationObject.categories.map(categoryId => {
 					return (
 						<StyledChip
+							key={categoryId}
 							label={
 								categories.find(category => {
 									return category.id === categoryId;
