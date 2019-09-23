@@ -99,7 +99,6 @@ const Locations = ({
 		}
 		return filteredLocations;
 	};
-
 	return (
 		<div>
 			<Modal
@@ -133,7 +132,6 @@ const Locations = ({
 					)}
 				</StyledModalBody>
 			</Modal>
-
 			<CustomTable
 				itemsToShow={getFilteredLocations()}
 				title={'All Locations'}

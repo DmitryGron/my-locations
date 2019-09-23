@@ -1,23 +1,14 @@
 import Button from '@material-ui/core/Button';
-import Chip from '@material-ui/core/Chip';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 import React from 'react';
 import styled from 'styled-components';
-
-const StyledChip = styled(Chip)`
-	background-color: #a55911 !important;
-	color: white !important;
-	font-size: 1rem !important;
-	margin: 5px 10px;
-`;
+import CategoriesSelect from '../../components/CategoriesSelect';
 
 const StyledButton = styled(Button)`
 	border: 0;
 	color: white !important;
 	font-size: 1rem !important;
 	font-weight: bold !important;
-	height: 48px;
+	height: 100%;
 	padding: 0 20px !important;
 	border-left: 1.5px solid white !important;
 	border-radius: 0px !important;
@@ -38,12 +29,16 @@ const StyledHeader = styled.header`
 	font-weight: bold;
 `;
 
-const Toolbar = props => {
+const Wrapper = styled.div`
+	height: 71px;
+`;
+
+const Toolbar = ({ title, buttons }) => {
 	return (
 		<ToolbarDiv>
-			<StyledHeader>{props.title}</StyledHeader>
-			<div>
-				{props.buttons.map(button => {
+			<StyledHeader>{title}</StyledHeader>
+			<Wrapper>
+				{buttons.map(button => {
 					return !button.categoryFilterIds ? (
 						<StyledButton
 							key={button.buttonText}
@@ -52,44 +47,10 @@ const Toolbar = props => {
 							{button.buttonText}
 						</StyledButton>
 					) : (
-						<Select
-							multiple
-							key={button.buttonText}
-							onChange={e => {
-								button.setCategoryFilter(e.target.value);
-							}}
-							value={button.categoryFilterIds}
-							renderValue={() => {
-								return (
-									<div>
-										{button.categoryFilterIds.map(value => (
-											<StyledChip
-												key={value}
-												label={
-													button.categories.find(
-														category => {
-															return (
-																category.id ===
-																value
-															);
-														}
-													).name
-												}
-											/>
-										))}
-									</div>
-								);
-							}}
-						>
-							{button.categories.map(category => (
-								<MenuItem key={category.id} value={category.id}>
-									{category.name}
-								</MenuItem>
-							))}
-						</Select>
+						<CategoriesSelect button={button} />
 					);
 				})}
-			</div>
+			</Wrapper>
 		</ToolbarDiv>
 	);
 };

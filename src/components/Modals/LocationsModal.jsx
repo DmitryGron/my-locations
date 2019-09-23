@@ -7,6 +7,9 @@ import React from 'react';
 import { Field, Form } from 'react-final-form';
 import styled from 'styled-components';
 import CustomHeader from '../custom/Header';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+
 // import GoogleMapReact from 'google-map-react';
 
 const required = value => (value ? undefined : 'Required');
@@ -21,7 +24,33 @@ const StyledChip = styled(Chip)`
 	background-color: #41b3a3 !important;
 	color: white !important;
 	font-size: 1rem !important;
-	margin: 5px 10px;
+	margin: 5px 8px;
+`;
+
+const ChipWrapper = styled.div`
+	overflow: auto;
+	width: 68%;
+`;
+
+const SelectWrapper = styled(FormControl)`
+	min-width: 100px !important;
+`;
+
+const InputWrapper = styled.div`
+	width: 68%;
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	margin: 7px 0;
+`;
+
+const FormWrapper = styled.form`
+	display: flex;
+	flex-direction: column;
+`;
+
+const Error = styled.span`
+	color: red;
 `;
 
 const LocationsModalForm = props => {
@@ -38,33 +67,33 @@ const LocationsModalForm = props => {
 					pristine,
 					values
 				}) => (
-					<form onSubmit={handleSubmit}>
+					<FormWrapper onSubmit={handleSubmit}>
 						<Field name='name' validate={required}>
 							{({ input, meta }) => (
-								<div>
+								<InputWrapper>
 									<Input
 										{...input}
 										type='text'
 										placeholder='location name'
 									/>
 									{meta.error && meta.touched && (
-										<span>{meta.error}</span>
+										<Error>{meta.error}</Error>
 									)}
-								</div>
+								</InputWrapper>
 							)}
 						</Field>
 						<Field name='address' validate={required}>
 							{({ input, meta }) => (
-								<div>
+								<InputWrapper>
 									<Input
 										{...input}
 										type='text'
 										placeholder='address'
 									/>
 									{meta.error && meta.touched && (
-										<span>{meta.error}</span>
+										<Error>{meta.error}</Error>
 									)}
-								</div>
+								</InputWrapper>
 							)}
 						</Field>
 						<Field
@@ -72,16 +101,16 @@ const LocationsModalForm = props => {
 							validate={composeValidators(required, mustBeNumber)}
 						>
 							{({ input, meta }) => (
-								<div>
+								<InputWrapper>
 									<Input
 										{...input}
 										type='text'
 										placeholder='latitude'
 									/>
 									{meta.error && meta.touched && (
-										<span>{meta.error}</span>
+										<Error>{meta.error}</Error>
 									)}
-								</div>
+								</InputWrapper>
 							)}
 						</Field>
 						<Field
@@ -89,52 +118,57 @@ const LocationsModalForm = props => {
 							validate={composeValidators(required, mustBeNumber)}
 						>
 							{({ input, meta }) => (
-								<div>
+								<InputWrapper>
 									<Input
 										{...input}
 										type='text'
 										placeholder='longtitude'
 									/>
 									{meta.error && meta.touched && (
-										<span>{meta.error}</span>
+										<Error>{meta.error}</Error>
 									)}
-								</div>
+								</InputWrapper>
 							)}
 						</Field>
 						<Field name='categories'>
 							{({ input, meta }) => (
-								<Select
-									multiple
-									{...input}
-									renderValue={selected => (
-										<div>
-											{selected.map(value => (
-												<StyledChip
-													key={value}
-													label={
-														props.categories.find(
-															category => {
-																return (
-																	category.id ===
-																	value
-																);
-															}
-														).name
-													}
-												/>
-											))}
-										</div>
-									)}
-								>
-									{props.categories.map(category => (
-										<MenuItem
-											key={category.id}
-											value={category.id}
-										>
-											{category.name}
-										</MenuItem>
-									))}
-								</Select>
+								<SelectWrapper>
+									<InputLabel htmlFor='select-multiple-chip'>
+										Categories
+									</InputLabel>
+									<Select
+										multiple
+										{...input}
+										renderValue={selected => (
+											<ChipWrapper>
+												{selected.map(value => (
+													<StyledChip
+														key={value}
+														label={
+															props.categories.find(
+																category => {
+																	return (
+																		category.id ===
+																		value
+																	);
+																}
+															).name
+														}
+													/>
+												))}
+											</ChipWrapper>
+										)}
+									>
+										{props.categories.map(category => (
+											<MenuItem
+												key={category.id}
+												value={category.id}
+											>
+												{category.name}
+											</MenuItem>
+										))}
+									</Select>
+								</SelectWrapper>
 							)}
 						</Field>
 						<Button type='submit' disabled={submitting}>
@@ -153,7 +187,7 @@ const LocationsModalForm = props => {
 								My Marker
 							</div>
 						</GoogleMapReact> */}
-					</form>
+					</FormWrapper>
 				)}
 			/>
 		</div>

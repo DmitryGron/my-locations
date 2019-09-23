@@ -44,7 +44,6 @@ const Categories = ({
 					}
 				</StyledModalBody>
 			</Modal>
-
 			<CustomTable
 				itemsToShow={categories}
 				title={'All Categories'}
