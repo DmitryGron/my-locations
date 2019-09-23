@@ -2,13 +2,13 @@ import styled from 'styled-components';
 
 const StyledModalDiv = styled.div`
 	position: absolute;
-	width: 400px;
-	height: 400px;
+	width: 600px;
+	height: 600px;
 	top: 50%;
 	left: 50%;
 	background-color: white;
 	border: 2px solid #000;
-	padding: 10px;
+	padding: 30px;
 	transform: translate(-50%, -50%);
 `;
 

@@ -1,14 +1,14 @@
-import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
+import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import React from 'react';
 import { Field, Form } from 'react-final-form';
 import styled from 'styled-components';
+import CustomButton from '../custom/Button';
 import CustomHeader from '../custom/Header';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
 
 // import GoogleMapReact from 'google-map-react';
 
@@ -29,33 +29,38 @@ const StyledChip = styled(Chip)`
 
 const ChipWrapper = styled.div`
 	overflow: auto;
-	width: 68%;
 `;
 
 const SelectWrapper = styled(FormControl)`
-	min-width: 100px !important;
+	max-width: fit-content;
+	min-width: 195px !important;
 `;
 
 const InputWrapper = styled.div`
-	width: 68%;
+	width: 275px;
 	display: flex;
 	align-items: flex-end;
 	justify-content: space-between;
-	margin: 7px 0;
 `;
 
 const FormWrapper = styled.form`
 	display: flex;
 	flex-direction: column;
+	justify-content: space-evenly;
+	height: 85%;
 `;
 
 const Error = styled.span`
 	color: red;
 `;
 
+const Wrapper = styled.div`
+	height: 100%;
+`;
+
 const LocationsModalForm = props => {
 	return (
-		<div>
+		<Wrapper>
 			<CustomHeader>{props.header}</CustomHeader>
 			<Form
 				onSubmit={values => props.onClick(values)}
@@ -171,9 +176,9 @@ const LocationsModalForm = props => {
 								</SelectWrapper>
 							)}
 						</Field>
-						<Button type='submit' disabled={submitting}>
+						<CustomButton type='submit' disabled={submitting}>
 							{props.buttonText}
-						</Button>
+						</CustomButton>
 						{/* <GoogleMapReact
 							bootstrapURLKeys={{ key: 'AIzaSyBJW1qHjP0qi1tvekNyc4uJ6tKV-D7eyTM' }}
 							defaultCenter={{
@@ -190,45 +195,8 @@ const LocationsModalForm = props => {
 					</FormWrapper>
 				)}
 			/>
-		</div>
+		</Wrapper>
 	);
 };
 
 export default LocationsModalForm;
-
-/* <CustomInput
-onChange={e => {
-	const newValue = { name: e.target.value };
-	updateLocationObject(newValue);
-}}
-placeholder='location name'
-defaultValue={locationObject.name}
-/>
-<CustomInput
-onChange={e => {
-	const newValue = { address: e.target.value };
-	updateLocationObject(newValue);
-}}
-placeholder='address'
-defaultValue={locationObject.address}
-/>
-<CustomInput
-onChange={e => {
-	const newValue = { latitude: e.target.value };
-	updateLocationObject(newValue);
-}}
-placeholder='latitude'
-defaultValue={locationObject.latitude}
-/>
-<CustomInput
-onChange={e => {
-	const newValue = { longtitude: e.target.value };
-	updateLocationObject(newValue);
-}}
-placeholder='longtitude'
-defaultValue={locationObject.longtitude}
-/>
-
-<CustomButton onClick={() => props.onClick(locationObject)}>
-{props.buttonText}
-</CustomButton> */

@@ -17,6 +17,7 @@ const StyledChip = styled(Chip)`
 const SelectWrapper = styled(FormControl)`
 	min-width: 100px !important;
 	height: 100%;
+	padding-right: 20px !important;
 `;
 
 const CategoriesSelect = ({ button }) => {
