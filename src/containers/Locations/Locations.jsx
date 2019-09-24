@@ -99,6 +99,7 @@ const Locations = ({
 		}
 		return filteredLocations;
 	};
+
 	return (
 		<div>
 			<Modal

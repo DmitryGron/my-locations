@@ -4,12 +4,12 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import GoogleMapReact from 'google-map-react';
 import React from 'react';
 import { Field, Form } from 'react-final-form';
 import styled from 'styled-components';
 import CustomButton from '../custom/Button';
 import CustomHeader from '../custom/Header';
+import MapContainer from '../Map';
 
 const required = value => (value ? undefined : 'Required');
 const mustBeNumber = value => (isNaN(value) ? 'Must be a number' : undefined);
@@ -73,13 +73,19 @@ const MapWrapper = styled.div`
 	padding-left: 40px;
 `;
 
-const LocationsModalForm = props => {
+const LocationsModalForm = ({
+	header,
+	onClick,
+	locationObject,
+	categories,
+	buttonText
+}) => {
 	return (
 		<Wrapper>
-			<CustomHeader>{props.header}</CustomHeader>
+			<CustomHeader>{header}</CustomHeader>
 			<Form
-				onSubmit={values => props.onClick(values)}
-				initialValues={props.locationObject}
+				onSubmit={values => onClick(values)}
+				initialValues={locationObject}
 				render={({
 					handleSubmit,
 					form,
@@ -173,7 +179,7 @@ const LocationsModalForm = props => {
 															<StyledChip
 																key={value}
 																label={
-																	props.categories.find(
+																	categories.find(
 																		category => {
 																			return (
 																				category.id ===
@@ -187,43 +193,29 @@ const LocationsModalForm = props => {
 													</ChipWrapper>
 												)}
 											>
-												{props.categories.map(
-													category => (
-														<MenuItem
-															key={category.id}
-															value={category.id}
-														>
-															{category.name}
-														</MenuItem>
-													)
-												)}
+												{categories.map(category => (
+													<MenuItem
+														key={category.id}
+														value={category.id}
+													>
+														{category.name}
+													</MenuItem>
+												))}
 											</Select>
 										</SelectWrapper>
 									)}
 								</Field>
 							</FieldsWrapper>
 							<MapWrapper>
-								<GoogleMapReact
-									bootstrapURLKeys={{
-										key:
-											process.env
-												.REACT_APP_MY_GOOGLE_MAP_KEY
-									}}
-									defaultCenter={{
-										lat: 59.95,
-										lng: 30.33
-									}}
-									defaultZoom={11}
-									yesIWantToUseGoogleMapApiInternals
-								>
-									<div lat={59.955413} lng={30.337844}>
-										My Marker
-									</div>
-								</GoogleMapReact>
+								<MapContainer
+									initialLat={50}
+									initialLng={50}
+									style={{ width: '58%', height: '70%' }}
+								/>
 							</MapWrapper>
 						</FieldsAndMapWrapper>
 						<CustomButton type='submit' disabled={submitting}>
-							{props.buttonText}
+							{buttonText}
 						</CustomButton>
 					</FormWrapper>
 				)}

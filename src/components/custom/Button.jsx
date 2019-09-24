@@ -7,7 +7,7 @@ const StyledButton = styled(Button)`
 	min-width: 85px !important;
 	min-height: 40px !important;
 	font-size: 16px !important;
-	margin: 15px 20px 0 auto !important;
+	margin: 15px auto 0 20px !important;
 	background-color: rgba(157, 180, 178, 0.35) !important;
 
 	&:hover {
