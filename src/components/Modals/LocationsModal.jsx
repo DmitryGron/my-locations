@@ -31,7 +31,7 @@ const ChipWrapper = styled.div`
 `;
 
 const SelectWrapper = styled(FormControl)`
-	max-width: fit-content;
+	max-width: 230px;
 	min-width: 195px !important;
 `;
 
@@ -49,12 +49,28 @@ const FormWrapper = styled.form`
 	height: 85%;
 `;
 
+const FieldsWrapper = styled.form`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+`;
+
 const Error = styled.span`
 	color: red;
 `;
 
 const Wrapper = styled.div`
 	height: 100%;
+`;
+
+const FieldsAndMapWrapper = styled.div`
+	display: flex;
+	height: 60%;
+`;
+
+const MapWrapper = styled.div`
+	width: 100%;
+	padding-left: 40px;
 `;
 
 const LocationsModalForm = props => {
@@ -72,127 +88,143 @@ const LocationsModalForm = props => {
 					values
 				}) => (
 					<FormWrapper onSubmit={handleSubmit}>
-						<Field name='name' validate={required}>
-							{({ input, meta }) => (
-								<InputWrapper>
-									<Input
-										{...input}
-										type='text'
-										placeholder='location name'
-									/>
-									{meta.error && meta.touched && (
-										<Error>{meta.error}</Error>
+						<FieldsAndMapWrapper>
+							<FieldsWrapper>
+								<Field name='name' validate={required}>
+									{({ input, meta }) => (
+										<InputWrapper>
+											<Input
+												{...input}
+												type='text'
+												placeholder='location name'
+											/>
+											{meta.error && meta.touched && (
+												<Error>{meta.error}</Error>
+											)}
+										</InputWrapper>
 									)}
-								</InputWrapper>
-							)}
-						</Field>
-						<Field name='address' validate={required}>
-							{({ input, meta }) => (
-								<InputWrapper>
-									<Input
-										{...input}
-										type='text'
-										placeholder='address'
-									/>
-									{meta.error && meta.touched && (
-										<Error>{meta.error}</Error>
+								</Field>
+								<Field name='address' validate={required}>
+									{({ input, meta }) => (
+										<InputWrapper>
+											<Input
+												{...input}
+												type='text'
+												placeholder='address'
+											/>
+											{meta.error && meta.touched && (
+												<Error>{meta.error}</Error>
+											)}
+										</InputWrapper>
 									)}
-								</InputWrapper>
-							)}
-						</Field>
-						<Field
-							name='latitude'
-							validate={composeValidators(required, mustBeNumber)}
-						>
-							{({ input, meta }) => (
-								<InputWrapper>
-									<Input
-										{...input}
-										type='text'
-										placeholder='latitude'
-									/>
-									{meta.error && meta.touched && (
-										<Error>{meta.error}</Error>
+								</Field>
+								<Field
+									name='latitude'
+									validate={composeValidators(
+										required,
+										mustBeNumber
 									)}
-								</InputWrapper>
-							)}
-						</Field>
-						<Field
-							name='longtitude'
-							validate={composeValidators(required, mustBeNumber)}
-						>
-							{({ input, meta }) => (
-								<InputWrapper>
-									<Input
-										{...input}
-										type='text'
-										placeholder='longtitude'
-									/>
-									{meta.error && meta.touched && (
-										<Error>{meta.error}</Error>
+								>
+									{({ input, meta }) => (
+										<InputWrapper>
+											<Input
+												{...input}
+												type='text'
+												placeholder='latitude'
+											/>
+											{meta.error && meta.touched && (
+												<Error>{meta.error}</Error>
+											)}
+										</InputWrapper>
 									)}
-								</InputWrapper>
-							)}
-						</Field>
-						<Field name='categories'>
-							{({ input, meta }) => (
-								<SelectWrapper>
-									<InputLabel htmlFor='select-multiple-chip'>
-										Categories
-									</InputLabel>
-									<Select
-										multiple
-										{...input}
-										renderValue={selected => (
-											<ChipWrapper>
-												{selected.map(value => (
-													<StyledChip
-														key={value}
-														label={
-															props.categories.find(
-																category => {
-																	return (
-																		category.id ===
-																		value
-																	);
+								</Field>
+								<Field
+									name='longtitude'
+									validate={composeValidators(
+										required,
+										mustBeNumber
+									)}
+								>
+									{({ input, meta }) => (
+										<InputWrapper>
+											<Input
+												{...input}
+												type='text'
+												placeholder='longtitude'
+											/>
+											{meta.error && meta.touched && (
+												<Error>{meta.error}</Error>
+											)}
+										</InputWrapper>
+									)}
+								</Field>
+								<Field name='categories'>
+									{({ input, meta }) => (
+										<SelectWrapper>
+											<InputLabel htmlFor='select-multiple-chip'>
+												Categories
+											</InputLabel>
+											<Select
+												multiple
+												{...input}
+												renderValue={selected => (
+													<ChipWrapper>
+														{selected.map(value => (
+															<StyledChip
+																key={value}
+																label={
+																	props.categories.find(
+																		category => {
+																			return (
+																				category.id ===
+																				value
+																			);
+																		}
+																	).name
 																}
-															).name
-														}
-													/>
-												))}
-											</ChipWrapper>
-										)}
-									>
-										{props.categories.map(category => (
-											<MenuItem
-												key={category.id}
-												value={category.id}
+															/>
+														))}
+													</ChipWrapper>
+												)}
 											>
-												{category.name}
-											</MenuItem>
-										))}
-									</Select>
-								</SelectWrapper>
-							)}
-						</Field>
+												{props.categories.map(
+													category => (
+														<MenuItem
+															key={category.id}
+															value={category.id}
+														>
+															{category.name}
+														</MenuItem>
+													)
+												)}
+											</Select>
+										</SelectWrapper>
+									)}
+								</Field>
+							</FieldsWrapper>
+							<MapWrapper>
+								<GoogleMapReact
+									bootstrapURLKeys={{
+										key:
+											process.env
+												.REACT_APP_MY_GOOGLE_MAP_KEY
+									}}
+									defaultCenter={{
+										lat: 59.95,
+										lng: 30.33
+									}}
+									defaultZoom={11}
+									yesIWantToUseGoogleMapApiInternals
+								>
+									<div lat={59.955413} lng={30.337844}>
+										My Marker
+									</div>
+								</GoogleMapReact>
+							</MapWrapper>
+						</FieldsAndMapWrapper>
 						<CustomButton type='submit' disabled={submitting}>
 							{props.buttonText}
 						</CustomButton>
-						<GoogleMapReact
-							bootstrapURLKeys={{
-								key: process.env.REACT_APP_MY_GOOGLE_MAP_KEY
-							}}
-							defaultCenter={{
-								lat: 59.95,
-								lng: 30.33
-							}}
-							defaultZoom={11}
-							yesIWantToUseGoogleMapApiInternals
-						>
-							<div lat={59.955413} lng={30.337844}>
-								My Marker
-							</div>
-						</GoogleMapReact>
 					</FormWrapper>
 				)}
 			/>

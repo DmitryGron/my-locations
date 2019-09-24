@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const StyledModalDiv = styled.div`
 	position: absolute;
-	width: 600px;
+	width: 800px;
 	height: 600px;
 	top: 50%;
 	left: 50%;
