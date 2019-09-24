@@ -8,8 +8,9 @@ const MapContainer = ({ google, initialLat, initialLng, style, zoom }) => {
 			style={style}
 			zoom={11}
 			initialCenter={{ lat: initialLat, lng: initialLng }}
-			onRightclick={obj => {
-				console.log(obj);
+			onClick={(mapProps, map, clickEvent) => {
+				console.log(clickEvent.latLng.lat());
+				console.log(clickEvent.latLng.lng());
 			}}
 		>
 			<Marker
